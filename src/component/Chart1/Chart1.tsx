@@ -185,6 +185,7 @@ function Chart1() {
                     {/* <Bar updateMode='active' redraw={true} options={options} data={data} /> */}
                 {/* </div> */}
                 <div id="chart">
+                  {/* @ts-ignore */}
                     <ReactApexChart options={myData.options} series={myData.series} type="bar" height={350} />
                 </div>
             </PaddingForCharts>

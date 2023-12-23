@@ -8,7 +8,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import Chart1 from '../Chart1/Chart1'
 import Chart2 from '../Chart2/Chart2'
-import DatePicker from "react-datepicker";
+// import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const HomePageContainer = styled.div`

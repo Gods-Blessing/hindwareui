@@ -168,6 +168,7 @@ function Chart2() {
             <PaddingForCharts>
                 <ApexPieChartContainer>
                     {/* <div id="chart"> */}
+                      {/* @ts-ignore */}
                         <ReactApexChart options={myData.options} series={myData.series} type="pie" width={380} />
                     {/* </div> */}
                 </ApexPieChartContainer>
