@@ -43,66 +43,6 @@ const DurationContainer = styled.div`
     }
 `
 
-
-//   ChartJS.register(
-//     CategoryScale,
-//     LinearScale,
-//     BarElement,
-//     Title,
-//     Tooltip,
-//     Legend
-//   );
-  
-//   export const options = {
-//     plugins: {
-//       title: {
-//         display: false,
-//         text: 'Complaint VS Query',
-//       },
-//     },
-//     responsive: true,
-//     maintainAspectRatio: true,
-//     interaction: {
-//       mode: 'index' as const,
-//       intersect: false,
-//     },
-//     scales: {
-//       x: {
-//         stacked: false,
-//       },
-//       y: {
-//         stacked: false,
-//       },
-//     },
-//   };
-  
-//   const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  
-//   export const data = {
-//     labels,
-//     datasets: [
-//       {
-//         label: 'Dataset 1',
-//         data: labels.map(() => Math.floor(Math.random()* 1001)),
-//         backgroundColor: 'rgb(255, 99, 132)',
-//         stack: 'Stack 0',
-//       },
-//       {
-//         label: 'Dataset 2',
-//         data: labels.map(() => Math.floor(Math.random()* 1001)),
-//         backgroundColor: 'rgb(75, 192, 192)',
-//         stack: 'Stack 1',
-//       },
-//       {
-//         label: 'Dataset 3',
-//         data: labels.map(() => Math.floor(Math.random()* 1001)),
-//         backgroundColor: 'rgb(53, 162, 235)',
-//         stack: 'Stack 2',
-//       },
-//     ],
-//   };
-
-
 function Chart1() {
     // const [myData, setMyData] = useState()
     const myData = {
@@ -182,9 +122,6 @@ function Chart1() {
 
         <div>
             <PaddingForCharts>
-                {/* <div> */}
-                    {/* <Bar updateMode='active' redraw={true} options={options} data={data} /> */}
-                {/* </div> */}
                 <div id="chart">
                   {/* @ts-ignore */}
                     <ReactApexChart options={myData.options} series={myData.series} type="bar" height={350} />

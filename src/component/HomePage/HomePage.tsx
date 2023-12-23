@@ -8,8 +8,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import Chart1 from '../Chart1/Chart1'
 import Chart2 from '../Chart2/Chart2'
-// import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+
 
 const HomePageContainer = styled.div`
   background-color: ${COLORS.color2};
@@ -268,11 +267,6 @@ function HomePage() {
                 {/* <Image width={18} height={18}  src='/calendaricon.svg' alt='calendar'/> */}
               </label>
               <input type="date" name="" id="fromdate" />
-              {/* <DatePicker
-                showIcon
-                selected={startDate}
-                onChange={(date:any) => setStartDate(date)}
-              /> */}
             </div>
 
             <div>
@@ -281,11 +275,6 @@ function HomePage() {
                 {/* <Image width={18} height={18}  src='/calendaricon.svg' alt='calendar'/> */}
               </label>
               <input type="date" name="" id="todate" />
-              {/* <DatePicker
-                showIcon
-                selected={endDate}
-                onChange={(date:any) => setendDate(date)}
-              /> */}
             </div>
           </InputDateContainer>
 

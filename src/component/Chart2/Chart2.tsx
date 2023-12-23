@@ -1,38 +1,9 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-// import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-// import { Pie } from 'react-chartjs-2';
 import styled from 'styled-components';
 import { COLORS } from '@/constants/colors';
 import { ChartsHeading, PaddedDiv, PaddingForCharts } from '@/commoncomponent/commoncomponents';
-
-
-// using RECHARTS
-// import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
 import ReactApexChart from 'react-apexcharts';
-
-const data = [
-  { name: 'Group A', value: 400 },
-  { name: 'Group B', value: 300 },
-  { name: 'Group C', value: 300 },
-  { name: 'Group D', value: 200 },
-];
-
-const COLOR = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
-
-const RADIAN = Math.PI / 180;
-const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }:any) => {
-  const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-  const x = cx + radius * Math.cos(-midAngle * RADIAN);
-  const y = cy + radius * Math.sin(-midAngle * RADIAN);
-
-  return (
-    <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
-      {`${(percent * 100).toFixed(0)}%`}
-    </text>
-  );
-};
-
 
 
 const PieChartContainer = styled.div`
@@ -81,28 +52,6 @@ const ApexPieChartContainer = styled.div`
     justify-content: center;
     margin-bottom: 20px;
 `
-// ChartJS.register(ArcElement, Tooltip, Legend);
-// export const data = {
-//   labels: ['Red', 'Blue'],
-//   datasets: [
-//     {
-//       label: '# of Votes',
-//       data: [12, 19,],
-//       backgroundColor: [
-//         'rgba(255, 99, 132, 1)',
-//         'rgba(54, 162, 235, 1)',
-        
-//       ],
-//     //   borderColor: [
-//     //     'rgba(255, 99, 132, 1)',
-//     //     'rgba(54, 162, 235, 1)',
-        
-//     //   ],
-//       borderWidth: 0,
-//     },
-//   ],
-// };
-
 
 
 
