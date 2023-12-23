@@ -1,3 +1,4 @@
+'use client'
 import React, { useEffect, useState } from 'react'
 // import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 // import { Pie } from 'react-chartjs-2';
@@ -7,7 +8,7 @@ import { ChartsHeading, PaddedDiv, PaddingForCharts } from '@/commoncomponent/co
 
 
 // using RECHARTS
-import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
+// import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
 import ReactApexChart from 'react-apexcharts';
 
 const data = [
