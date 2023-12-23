@@ -24,17 +24,18 @@ const InputDateContainer = styled.div`
   &>div{
     display: flex;
     /* width: 125px; */
-    height: 31px;
+    /* height: 31px; */
     padding: 8px 10px;
     justify-content: space-between;
     align-items: center;
     background-color: ${COLORS.white};
     border: 1px solid ${COLORS.Grayish_2};
+    gap: 20px;
     &>label{
       display: flex;
       align-items: center;
       justify-content: space-between;
-      width: 100%;
+      /* width: 100%; */
       &>p{
         font-family: ${FONTS.font1};
         font-size: 12px;
@@ -46,11 +47,17 @@ const InputDateContainer = styled.div`
       
     }
     &>input{
-      display: block;
+      justify-self: stretch;
     }
   }
   @media screen and (max-width: ${MediScreens.Mobile}) {
+    flex-direction: column;
     justify-content: space-between;
+    align-items: flex-start;
+
+    &>div{
+      width: 100%;
+    }
   }
 `
 
