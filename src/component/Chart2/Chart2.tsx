@@ -1,9 +1,12 @@
 'use client'
 import React, { useEffect, useState } from 'react'
+import dynamic from 'next/dynamic';
 import styled from 'styled-components';
 import { COLORS } from '@/constants/colors';
 import { ChartsHeading, PaddedDiv, PaddingForCharts } from '@/commoncomponent/commoncomponents';
-import ReactApexChart from 'react-apexcharts';
+
+// import ReactApexChart from 'react-apexcharts';
+const ReactApexChart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 
 const PieChartContainer = styled.div`
@@ -118,8 +121,13 @@ function Chart2() {
             <PaddingForCharts>
                 <ApexPieChartContainer>
                     {/* <div id="chart"> */}
-                      {/* @ts-ignore */}
-                        <ReactApexChart options={myData.options} series={myData.series} type="pie" width={380} />
+                    {
+                      (typeof window !== 'undefined') &&
+                      <>
+                        {/* @ts-ignore */}
+                        <ReactApexChart options={myData.options} series={myData.series} type="pie" width={300} />
+                      </>
+                    }
                     {/* </div> */}
                 </ApexPieChartContainer>
 

@@ -1,10 +1,10 @@
 'use client'
+import React, { useState } from 'react'
 import { PaddedDiv } from '@/commoncomponent/commoncomponents'
 import { MediScreens } from '@/constants/MediaScreen'
 import { COLORS } from '@/constants/colors'
 import { FONTS } from '@/constants/fonts'
 import Image from 'next/image'
-import React, { useState } from 'react'
 import styled from 'styled-components'
 import Chart1 from '../Chart1/Chart1'
 import Chart2 from '../Chart2/Chart2'
@@ -306,12 +306,12 @@ function HomePage() {
           <ChartsContainer>
             {/* Graph 1 */}
             <div>
-              <Chart1/>
+                <Chart1/>
             </div>
 
             {/* Graph 2 */}
             <div>
-              <Chart2/>
+                <Chart2/>
             </div>
           </ChartsContainer>
 

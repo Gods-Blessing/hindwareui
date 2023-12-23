@@ -351,7 +351,7 @@ function ReportsPage() {
                   <div>
                     {
                       ContentToBeShown.map((data, idx)=>{
-                        console.log(idx)
+                        // console.log(idx)
                         return(
                           <>
                           <PaginationNumbers onClick={()=>HandleSetPageNo(idx + 1)} key={`page-${idx}`} id={`id-${idx + 1}`} $active={idx + 1} $myState={page}>{idx + 1}</PaginationNumbers>

@@ -1,10 +1,10 @@
 'use client'
+import React, { useState } from 'react'
 import { PaddedDiv } from '@/commoncomponent/commoncomponents'
 import { COLORS } from '@/constants/colors'
 import { FONTS } from '@/constants/fonts'
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { useState } from 'react'
 // import styled
 import styled from 'styled-components'
 

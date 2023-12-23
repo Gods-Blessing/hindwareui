@@ -1,12 +1,15 @@
 'use client'
 import React, { useEffect, useRef, useState } from 'react'
 // cls
+import dynamic from 'next/dynamic';
 import styled from 'styled-components';
 import { COLORS } from '@/constants/colors';
 import { ChartsHeading, PaddingForCharts } from '@/commoncomponent/commoncomponents';
 import { FONTS } from '@/constants/fonts';
-import ReactApexChart from 'react-apexcharts';
+// import ReactApexChart from 'react-apexcharts';
   //import faker from 'faker';
+const ReactApexChart = dynamic(() => import('react-apexcharts'), { ssr: false });
+
   
 
 // Css
@@ -44,7 +47,7 @@ const DurationContainer = styled.div`
 `
 
 function Chart1() {
-    // const [myData, setMyData] = useState()
+    const [theData, setMyData] = useState('')
     const myData = {
         series: [{
             name: 'Net Profit',
@@ -103,6 +106,10 @@ function Chart1() {
           },
     }
 
+
+    useEffect(()=>{
+      setMyData('heyy')
+    }, [])
   return (
     <ChartContainer>
         <div>
@@ -123,8 +130,13 @@ function Chart1() {
         <div>
             <PaddingForCharts>
                 <div id="chart">
-                  {/* @ts-ignore */}
-                    <ReactApexChart options={myData.options} series={myData.series} type="bar" height={350} />
+                  {
+                    (typeof window !== 'undefined') &&
+                    <>
+                      {/* @ts-ignore */}
+                      <ReactApexChart options={myData.options} series={myData.series} type="bar" height={350} />
+                    </>
+                  }
                 </div>
             </PaddingForCharts>
         </div>

@@ -1,3 +1,4 @@
+'use client'
 import ReportsPage from '@/component/ReportsPage/ReportsPage'
 import React from 'react'
 
