@@ -7,6 +7,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 // import styled
 import styled from 'styled-components'
+import { MediScreens } from '@/constants/MediaScreen'
 
 const HeaderContainer = styled.nav`
     position: fixed;
@@ -15,6 +16,14 @@ const HeaderContainer = styled.nav`
     right: 0px;
     left: 0px;
 
+`
+const HeaderLogo = styled(Image)`
+    width: 138px;
+    height: 30px;
+
+    @media screen and (max-width: ${MediScreens.Mobile}) {
+        width: 60px;
+    }
 `
 
 const HeadrContainer2 = styled.div`
@@ -71,6 +80,9 @@ const ImagesContainer = styled.div`
     display: flex;
     align-items: center;
     gap: 25px;
+    @media screen and (max-width: ${MediScreens.Mobile}) {
+        gap: 10px;
+    }
 `
 
 const IconsContainer = styled.div`
@@ -86,6 +98,16 @@ const IconsContainer = styled.div`
         &>input{
             padding: 5px 10px;
             margin-right: 10px;
+        }
+    }
+
+    @media screen and (max-width: ${MediScreens.Mobile}) {
+        gap: 10px;
+        &>div{
+            &>input{
+                width: 150px;
+                margin-right: 5px;
+            }
         }
     }
 `
@@ -112,9 +134,9 @@ function Header() {
     <HeaderContainer>
         <HeadrContainer2>
                 <PaddedDiv>
-                    <div>
+                    <div> 
                         <Link href='/'>
-                            <Image width={138} height={30} src='/Logo_1.svg' alt='logo'/>
+                            <HeaderLogo width={138} height={30} src='/Logo_1.svg' alt='logo'/>
                         </Link>
 
                         <ImagesContainer>

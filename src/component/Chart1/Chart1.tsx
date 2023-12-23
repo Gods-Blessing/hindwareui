@@ -99,17 +99,19 @@ function Chart1() {
             tooltip: {
               y: {
                 formatter: function (val:any) {
-                  return "Quadra " + val + " thousands"
+                  return val + " thousands"
                 }
-              }
+              },
+              fixed: {
+                enabled: true,
+                position: 'topRight',
+                offsetX: 0,
+                offsetY: 0,
+              },
             }
           },
     }
 
-
-    useEffect(()=>{
-      setMyData('heyy')
-    }, [])
   return (
     <ChartContainer>
         <div>

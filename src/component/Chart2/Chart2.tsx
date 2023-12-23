@@ -76,12 +76,19 @@ function Chart2() {
                   }, 
                 }
               },
-              
+              tooltip: {
+                fixed: {
+                  enabled: true,
+                  position: 'topRight',
+                  offsetX: 0,
+                  offsetY: 0,
+                },
+              },
               legend: {
                 position: 'bottom',
                 // fontSize: '10px',
                 // fontWeight: 600,
-            },
+              },
               responsive: [{
                 breakpoint: 480,
                 options: {
