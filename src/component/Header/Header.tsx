@@ -51,7 +51,7 @@ const HeaderContainer3 = styled.div`
             &>div:first-child{
                 margin-right: 50px;
                 color: ${COLORS.color1};
-                font-family: ${FONTS.font1};
+                /* font-family: ${FONTS.font1}; */
                 font-size: 14px;
                 font-style: normal;
                 font-weight: 500;
