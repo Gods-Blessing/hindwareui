@@ -79,6 +79,7 @@ const myData = {
         dataLabels: {
           enabled: false
         },
+        colors:['#FAC70F','#006FAB', '#49A3A1'],
         stroke: {
           show: true,
           width: 2,

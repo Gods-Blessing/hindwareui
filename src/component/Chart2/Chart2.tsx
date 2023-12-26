@@ -69,6 +69,7 @@ function Chart2() {
                 type: 'pie',
               },
               labels: ['Soft', 'Hard'],
+              colors:['#49A3A1', '#DC3545'],
               plotOptions: {
                 pie: {
                   dataLabels: {
