@@ -64,7 +64,7 @@ const HeaderContainer3 = styled.div`
                     display: block;
                     text-decoration: none;
                     color: ${COLORS.color1};
-                    font-family: ${FONTS.font1};
+                    /* font-family: ${FONTS.font1}; */
                     font-size: 12px;
                     font-style: normal;
                     font-weight: 400;
