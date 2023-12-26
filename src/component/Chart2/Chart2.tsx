@@ -61,14 +61,14 @@ const ApexPieChartContainer = styled.div`
 function Chart2() {
     const [temp, setTemp] = useState();
     const myData = {
-        series: [44, 55],
+        series: [220, 38],
             options: {
               chart: {
                 width: 200,
                 height:200,
                 type: 'pie',
               },
-              labels: ['Team A', 'Team B'],
+              labels: ['Soft', 'Hard'],
               plotOptions: {
                 pie: {
                   dataLabels: {
@@ -120,7 +120,7 @@ function Chart2() {
         <div>
             <PaddingForCharts>
                 <ChartsHeading>
-                    <p>Complaint VS Query</p>
+                    <p>Tone Quality</p>
                 </ChartsHeading>
             </PaddingForCharts>
         </div>
