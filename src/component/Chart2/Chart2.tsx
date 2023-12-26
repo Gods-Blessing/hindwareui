@@ -32,7 +32,7 @@ const TotalCallsContainer = styled.div`
 `
 
 const TotalCallsCount = styled.span`
-    color: #38454A;
+    color: ${COLORS.color1};
     font-family: Inter;
     font-size: 16px;
     font-style: normal;
@@ -41,7 +41,7 @@ const TotalCallsCount = styled.span`
 `
 
 const TotalCallCountText = styled.span`
-    color: #38454A;
+    color: ${COLORS.color1};
     font-family: Inter;
     font-size: 12px;
     font-style: normal;

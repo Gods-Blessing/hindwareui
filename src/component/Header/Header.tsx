@@ -27,7 +27,7 @@ const HeaderLogo = styled(Image)`
 `
 
 const HeadrContainer2 = styled.div`
-        background: #38454A;
+        background: ${COLORS.color1};
         border-bottom: 1px solid rgba(56, 69, 74, 0.50);
     &>div{
         &>div{

@@ -37,7 +37,7 @@ const InputDateContainer = styled.div`
       justify-content: space-between;
       /* width: 100%; */
       &>p{
-        font-family: ${FONTS.font1};
+        /* font-family: ${FONTS.font1}; */
         font-size: 12px;
         font-style: normal;
         font-weight: 400;
@@ -81,8 +81,8 @@ const CardContainer = styled.div`
     height: 80px;
     flex-shrink: 0;
     border-radius: 3px;
-    border: 1px solid var(--TD-Border, #EDEBEB);
-    background: var(--white, #FFF);
+    border: 1px solid ${COLORS.Grayish_2};
+    background: ${COLORS.white};
     display: flex;
   }
 
@@ -111,7 +111,7 @@ const CardTextContainer = styled.div`
   padding: 0px 0px 0px 10px;
   &>p:first-child{
     color: ${COLORS.Grayish_1};
-    font-family: ${FONTS.font1};
+    /* font-family: ${FONTS.font1}; */
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
@@ -121,7 +121,7 @@ const CardTextContainer = styled.div`
 
   &>p:last-child{
     color: ${COLORS.color3};
-    font-family: Inter;
+    /* font-family: Inter; */
     font-size: 18px;
     font-style: normal;
     font-weight: 500;
@@ -159,9 +159,9 @@ const TableAndDataContainer = styled.div`
   &>div:first-child{
     padding: 13px 10px;
     border-bottom: 1px solid ${COLORS.Grayish_2};
-    background: var(--white, #FFF);
+    background: ${COLORS.white};
     border-radius: 8px 8px 0px 0px;
-    font-family: ${FONTS.font1};
+    /* font-family: ${FONTS.font1}; */
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
@@ -191,7 +191,7 @@ const TableContainer = styled.div`
         height: 35px;
         color: ${COLORS.black};
         background-color: ${COLORS.Grayish_2};
-        font-family: Inter;
+        /* font-family: Inter; */
         font-size: 12px;
         font-style: normal;
         font-weight: 500;
@@ -204,8 +204,8 @@ const TableContainer = styled.div`
         padding: 10px;
         text-align: center;
         /* margin-right: 20px; */
-        color: #38454A;
-        font-family: Inter;
+        color: ${COLORS.color1};
+        /* font-family: Inter; */
         font-size: 12px;
         font-style: normal;
         font-weight: 400;
@@ -216,8 +216,8 @@ const TableContainer = styled.div`
 `
 
 const TdsSmallText = styled.span`
-  color: #38454A;
-  font-family: ${FONTS.font1};
+  color: ${COLORS.color1};
+  /* font-family: ${FONTS.font1}; */
   font-size: 9px;
   font-style: normal;
   font-weight: 400;
@@ -227,8 +227,8 @@ const TdsSmallText = styled.span`
 const SearchInput = styled.input`
   padding: 8px 10px;
   margin-bottom: 15px;
-  border: 1px solid var(--TD-Border, #EDEBEB);
-  background: var(--white, #FFF);
+  border: 1px solid ${COLORS.Grayish_2};
+  background: ${COLORS.white};
 `
 
 const ContentTobeShown = {

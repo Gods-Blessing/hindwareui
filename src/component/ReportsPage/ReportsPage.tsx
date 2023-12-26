@@ -12,7 +12,7 @@ const ReportPageContainer = styled.div`
 
 const ReportPageHeading = styled.div`
   color: ${COLORS.color1};
-  font-family: Inter;
+  /* font-family: Inter; */
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -29,7 +29,7 @@ const TableAndDataContainer = styled.div`
   &>div:first-child{
     padding: 13px 10px;
     border-bottom: 1px solid ${COLORS.Grayish_2};
-    background: var(--white, #FFF);
+    background: ${COLORS.white};
     border-radius: 8px 8px 0px 0px;
     font-family: ${FONTS.font1};
     font-size: 16px;
@@ -47,8 +47,8 @@ const TableAndDataContainer = styled.div`
       align-items: center;
       flex-shrink: 0;
       border-radius: 5px;
-      border: 1px solid var(--Primary-Yellow, #FAC70F);
-      background: var(--Primary-Yellow, #FAC70F);
+      border: 1px solid ${COLORS.yellow};
+      background: ${COLORS.yellow};
       /* Top-Nav */
       box-shadow: 0px 2px 15px 0px rgba(0, 0, 0, 0.05);
     }
@@ -77,7 +77,7 @@ const TableContainer = styled.div`
         height: 35px;
         color: ${COLORS.black};
         background-color: ${COLORS.Grayish_2};
-        font-family: Inter;
+        /* font-family: Inter; */
         font-size: 12px;
         font-style: normal;
         font-weight: 500;
@@ -90,8 +90,8 @@ const TableContainer = styled.div`
         padding: 10px;
         text-align: center;
         /* margin-right: 20px; */
-        color: #38454A;
-        font-family: Inter;
+        color: ${COLORS.color1};
+        /* font-family: Inter; */
         font-size: 12px;
         font-style: normal;
         font-weight: 400;
@@ -104,7 +104,7 @@ const TableContainer = styled.div`
 `
 
 const TdsSmallText = styled.span`
-  color: #38454A;
+  color: ${COLORS.color1};
   font-family: ${FONTS.font1};
   font-size: 9px;
   font-style: normal;
@@ -115,8 +115,8 @@ const TdsSmallText = styled.span`
 const SearchInput = styled.input`
   padding: 8px 10px;
   margin-bottom: 15px;
-  border: 1px solid var(--TD-Border, #EDEBEB);
-  background: var(--white, #FFF);
+  border: 1px solid ${COLORS.Grayish_2};
+  background: ${COLORS.white};
 `
 
 const PaginationContainer = styled.div`
@@ -125,8 +125,8 @@ const PaginationContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   &>p{
-    color: var(--Border, #393945);
-    font-family: Inter;
+    color: ${COLORS.color3};
+    /* font-family: Inter; */
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
@@ -146,8 +146,8 @@ const PaginationNoContainer = styled.div`
   &>div{
     display: flex;
     align-items: center;
-    border: 1px solid var(--TD-Border, #EDEBEB);
-    font-family: Inter;
+    border: 1px solid ${COLORS.Grayish_2};
+    /* font-family: Inter; */
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
@@ -171,7 +171,7 @@ const PaginationNoContainer = styled.div`
     &>div{
       padding: 8px 10px;
       border-collapse: collapse;
-      border-left: 1px solid var(--TD-Border, #EDEBEB);
+      border-left: 1px solid ${COLORS.Grayish_2};
     }
   }
 `
@@ -179,99 +179,61 @@ const PaginationNumbers = styled.div<{ $active?: any, $myState?:any}>`
   background-color: ${props => props.$active == props.$myState ? COLORS.yellow : COLORS.white};
 `
 
-const ContentToBeShown = [
+const ContentToBeShown ={
+  ths:[
+    'Date',
+    'SKU Name',
+    'Model Name',
+    'Problem Type',
+    'Problem Detail',
+    'Agent Name',
+    'Agent Tone',
+    'Suggestion to Customer',
+    'Suggestion to Agent',
+    'Customer Name',
+    'Customer Location',
+    'Pincode',
+    'Customer Tone',
+    'Defective Part',
+    'Suggestions to R&D Team',
+    'RCA',
+    'Proposed Resolution Based On RCA',
+    'Call Score',
+  ],
+  trs: [
   {
     th:'Date',
     tr:{
       date:'01-12-2023',
-      rec:'REC-0111111.mp3',
-      modelName:'Lorem Ipsum is simply',
-      problemType:'John Doe',
-      problemDetail:'Gyser',
-      agentName:'Soft',
-      agentTone:'Query'
-    }
-  },
-  {
-    th:'SKU Name',
-    tr:{
-      date:'01-12-2023',
-      rec:'REC-0111111.mp3',
-      modelName:'Lorem Ipsum is simply',
-      problemType:'John Doe',
-      problemDetail:'Gyser',
-      agentName:'Soft',
-      agentTone:'Query'
-    }
-  },
-  {
-    th:'Model Name',
-    tr:{
-      date:'01-12-2023',
-      rec:'REC-0111111.mp3',
-      modelName:'Lorem Ipsum is simply',
-      problemType:'John Doe',
-      problemDetail:'Gyser',
-      agentName:'Soft',
-      agentTone:'Query'
-    }
-  },
-  {
-    th:'Problem Type',
-    tr:{
-      date:'01-12-2023',
-      rec:'REC-0111111.mp3',
-      modelName:'Lorem Ipsum is simply',
-      problemType:'John Doe',
-      problemDetail:'Gyser',
-      agentName:'Soft',
-      agentTone:'Query'
-    }
-  },
-  {
-    th:'Problem Detail',
-    tr:{
-      date:'01-12-2023',
-      rec:'REC-0111111.mp3',
-      modelName:'Lorem Ipsum is simply',
-      problemType:'John Doe',
-      problemDetail:'Gyser',
-      agentName:'Soft',
-      agentTone:'Query'
-    }
-  },
-  {
-    th:'Agent Name',
-    tr:{
-      date:'01-12-2023',
-      rec:'REC-0111111.mp3',
-      modelName:'Lorem Ipsum is simply',
-      problemType:'John Doe',
-      problemDetail:'Gyser',
-      agentName:'Soft',
-      agentTone:'Query'
-    }
-  },
-  {
-    th:'Agent Tone',
-    tr:{
-      date:'01-12-2023',
-      rec:'REC-0111111.mp3',
-      modelName:'Lorem Ipsum is simply',
-      problemType:'John Doe',
-      problemDetail:'Gyser',
-      agentName:'Soft',
-      agentTone:'Query'
+      SKUName:'SensorArt60018',
+      modelName:'Sensor Art Sensor Urinal',
+      problemType:'Water Leakage',
+      problemDetail:'Lorem Ipsum is simply...',
+      agentName:'John Doe',
+      agentTone:'Soft',
+      suggestionToCustomer:'Lorem Ipsum is simply dummy text of the...',
+      suggestionToAgent:'Lorem Ipsum is simply dummy text of the...',
+      customerName:'Gordon Kumar',
+      customerLocation:"Delhi",
+      pinCode:'11058',
+      customerTone:'Soft',
+      defectivePart:'Sensor',
+      suggestionToRnD:'Lorem Ipsum is simply dummy text of the...',
+      rca:'Lorem Ipsum is simply dummy text of the...',
+      proposedResolution:'Part Replacement',
+      callScore:'9'
     }
   },
 ]
+}
+
 
 
 function ReportsPage() {
   const [page, setpage] = useState(1);
 
   const HandlePageIncrease = ()=>{
-    if(page < ContentToBeShown.length){
+    if(page < ContentToBeShown.ths.length){
       setpage(page + 1);
     }
   }
@@ -311,9 +273,9 @@ function ReportsPage() {
                 <table>
                   <tr>
                     {
-                      ContentToBeShown.map((ths, idx)=>{
+                      ContentToBeShown.ths.map((ths, idx)=>{
                         return(
-                          <th key={`th-${idx}`}>{ths?.th}</th>
+                          <th key={`th-${idx}`}>{ths}</th>
                         )
                       })
                     }
@@ -322,18 +284,29 @@ function ReportsPage() {
                   <>
                   {
                     
-                    ContentToBeShown.map((trs, idx)=>{
+                    ContentToBeShown.ths.slice(0, 15).map((trs, idx)=>{
                       // console.log(idx);
                       
                       return(
                         <tr key={`tr-${idx}`}>
-                          <td>{trs?.tr.date}</td>
-                          <td>{trs?.tr.rec}</td>
-                          <td>{trs?.tr.modelName} .... <TdsSmallText>see more</TdsSmallText></td>
-                          <td>{trs?.tr.problemType}</td>
-                          <td>{trs?.tr.problemDetail}</td>
-                          <td>{trs?.tr.agentName}</td>
-                          <td>{trs?.tr.agentTone}</td>
+                          <td>{ContentToBeShown.trs[0].tr.date}</td>
+                          <td>{ContentToBeShown.trs[0].tr.SKUName}</td>
+                          <td>{ContentToBeShown.trs[0].tr.modelName}</td>
+                          <td>{ContentToBeShown.trs[0].tr.problemType}</td>
+                          <td>{ContentToBeShown.trs[0].tr.problemDetail}</td>
+                          <td>{ContentToBeShown.trs[0].tr.agentName}</td>
+                          <td>{ContentToBeShown.trs[0].tr.agentTone}</td>
+                          <td>{ContentToBeShown.trs[0].tr.suggestionToCustomer}</td>
+                          <td>{ContentToBeShown.trs[0].tr.suggestionToAgent}</td>
+                          <td>{ContentToBeShown.trs[0].tr.customerName}</td>
+                          <td>{ContentToBeShown.trs[0].tr.customerLocation}</td>
+                          <td>{ContentToBeShown.trs[0].tr.pinCode}</td>
+                          <td>{ContentToBeShown.trs[0].tr.customerTone}</td>
+                          <td>{ContentToBeShown.trs[0].tr.defectivePart}</td>
+                          <td>{ContentToBeShown.trs[0].tr.suggestionToRnD}</td>
+                          <td>{ContentToBeShown.trs[0].tr.rca}</td>
+                          <td>{ContentToBeShown.trs[0].tr.proposedResolution}</td>
+                          <td>{ContentToBeShown.trs[0].tr.callScore}</td>
                         </tr>
                         )
                       })
@@ -350,8 +323,8 @@ function ReportsPage() {
                   <div onClick={HandlePageDecrease}>Prev</div>
                   <div>
                     {
-                      ContentToBeShown.map((data, idx)=>{
-                        // console.log(idx)
+                      ContentToBeShown.ths.map((data, idx)=>{
+                        console.log(idx)
                         return(
                           <>
                           <PaginationNumbers onClick={()=>HandleSetPageNo(idx + 1)} key={`page-${idx}`} id={`id-${idx + 1}`} $active={idx + 1} $myState={page}>{idx + 1}</PaginationNumbers>
