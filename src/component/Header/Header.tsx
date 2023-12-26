@@ -40,7 +40,7 @@ const HeadrContainer2 = styled.div`
 
 const HeaderContainer3 = styled.div`
     /* width: 1366px; */
-    background: var(--White, #FFF);
+    background: ${COLORS.white};
     box-shadow: 0px 2px 4px 0px rgba(15, 34, 58, 0.12);
     &>div{
         &>div{

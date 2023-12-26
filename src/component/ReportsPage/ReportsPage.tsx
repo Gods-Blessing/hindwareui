@@ -31,7 +31,7 @@ const TableAndDataContainer = styled.div`
     border-bottom: 1px solid ${COLORS.Grayish_2};
     background: ${COLORS.white};
     border-radius: 8px 8px 0px 0px;
-    font-family: ${FONTS.font1};
+    /* font-family: ${FONTS.font1}; */
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
@@ -105,7 +105,7 @@ const TableContainer = styled.div`
 
 const TdsSmallText = styled.span`
   color: ${COLORS.color1};
-  font-family: ${FONTS.font1};
+  /* font-family: ${FONTS.font1}; */
   font-size: 9px;
   font-style: normal;
   font-weight: 400;

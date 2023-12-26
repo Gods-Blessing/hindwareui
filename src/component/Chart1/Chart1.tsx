@@ -33,7 +33,7 @@ const DurationContainer = styled.div`
     align-items: center;
     gap: 5px;
     &>div{
-        font-family: ${FONTS.font1};
+        /* font-family: ${FONTS.font1}; */
         font-size: 12px;
         font-style: normal;
         font-weight: 500;

@@ -14,13 +14,13 @@ const PieChartContainer = styled.div`
     height: 100%;
     width: 100%;
     border-radius: 10px;
-    border: 1px solid var(--TD-Border, #EDEBEB);
-    background: var(--white, #FFF);
+    border: 1px solid ${COLORS.Grayish_2};
+    background: ${COLORS.white};
     /* card-shadow */
     box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.05);
 
     &>div:not(:last-child){
-        border-bottom: 1px solid var(--TD-Border, #EDEBEB);
+        border-bottom: 1px solid ${COLORS.Grayish_2};
     }
 `
 
@@ -33,7 +33,7 @@ const TotalCallsContainer = styled.div`
 
 const TotalCallsCount = styled.span`
     color: ${COLORS.color1};
-    font-family: Inter;
+    /* font-family: Inter; */
     font-size: 16px;
     font-style: normal;
     font-weight: 600;
@@ -42,7 +42,7 @@ const TotalCallsCount = styled.span`
 
 const TotalCallCountText = styled.span`
     color: ${COLORS.color1};
-    font-family: Inter;
+    /* font-family: Inter; */
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
