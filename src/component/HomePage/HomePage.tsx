@@ -67,6 +67,8 @@ const CardContainer = styled.div`
   display: flex;
   /* width: 1166px; */
   align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
   gap: 24px;
   overflow: auto;
   &::-webkit-scrollbar {
@@ -74,7 +76,8 @@ const CardContainer = styled.div`
   }
 
   &>div{
-    width: 273px;
+    /* width: 273px; */
+    flex: 1;
     height: 80px;
     flex-shrink: 0;
     border-radius: 3px;
@@ -85,7 +88,7 @@ const CardContainer = styled.div`
 
   @media screen and (max-width: ${MediScreens.Mobile}) {
     &>div{
-      width: 100%;
+      /* width: 100%; */
     }
   }
 `

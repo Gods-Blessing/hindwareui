@@ -140,7 +140,7 @@ function Header() {
                         </Link>
 
                         <ImagesContainer>
-                            <IconsContainer>
+                            {/* <IconsContainer>
                                 <div>
                                     <Image width={17} height={17} src='/alerticon.svg' alt='alerticon'/>
                                 </div>
@@ -150,7 +150,7 @@ function Header() {
                                     }
                                     <Image onClick={HandleShowInput} width={17} height={17} src='/searchicon.svg' alt='searcicon'/>
                                 </div>
-                            </IconsContainer>
+                            </IconsContainer> */}
 
                             <AvatarImageContainer>
                                 <Image width={30} height={30} src='/avatar.png' alt='avatar'/>
