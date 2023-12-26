@@ -116,6 +116,7 @@ const CardTextContainer = styled.div`
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    white-space: nowrap;
   }
 
   &>p:last-child{
