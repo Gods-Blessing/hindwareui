@@ -1,9 +1,16 @@
 'use client'
-import { PaddedDiv } from '@/commoncomponent/commoncomponents'
+import { LoaderContainer, PaddedDiv, TopBottomPadding } from '@/commoncomponent/commoncomponents'
 import { MediScreens } from '@/constants/MediaScreen'
 import { COLORS } from '@/constants/colors'
 import { FONTS } from '@/constants/fonts'
+import { GetData } from '@/network'
+import { APIS } from '@/network/AllApis'
+import moment from 'moment'
 import React, { useEffect, useState } from 'react'
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { RotatingLines, ThreeCircles } from 'react-loader-spinner'
+
 import styled from 'styled-components'
 
 const ReportPageContainer = styled.div`
@@ -17,6 +24,60 @@ const ReportPageHeading = styled.div`
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+`
+const InputDateContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 11px;
+  margin: 30px 0px;
+  &>div{
+    display: flex;
+    /* width: 125px; */
+    /* height: 31px; */
+    padding: 8px 10px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: ${COLORS.white};
+    border: 1px solid ${COLORS.Grayish_2};
+    gap: 20px;
+    border-radius: 8px;
+    &>label{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      /* width: 100%; */
+      &>p{
+        /* font-family: ${FONTS.font1}; */
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        color: ${COLORS.Grayish_1};
+      }
+      
+    }
+    input{
+      /* justify-self: stretch; */
+      /* background-color: orange; */
+      border: none;
+      border-bottom: 1px solid ${COLORS.Grayish_1};
+      position: relative;
+
+      &:focus{
+        outline: none;
+      }
+    }
+  }
+  @media screen and (max-width: ${MediScreens.Mobile}) {
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    &>div{
+      width: 100%;
+    }
+  }
 `
 
 const TableAndDataContainer = styled.div`
@@ -90,13 +151,13 @@ const TableContainer = styled.div`
         padding: 10px;
         text-align: center;
         /* margin-right: 20px; */
-        color: ${COLORS.color1};
+        color: #38454A;
         /* font-family: Inter; */
         font-size: 12px;
         font-style: normal;
         font-weight: 400;
         line-height: normal;
-        white-space: nowrap;
+        /* white-space: nowrap; */
         
       }
     }
@@ -104,7 +165,7 @@ const TableContainer = styled.div`
 `
 
 const TdsSmallText = styled.span`
-  color: ${COLORS.color1};
+  color: #38454A;
   /* font-family: ${FONTS.font1}; */
   font-size: 9px;
   font-style: normal;
@@ -125,7 +186,7 @@ const PaginationContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   &>p{
-    color: ${COLORS.color3};
+    color: var(--Border, #393945);
     /* font-family: Inter; */
     font-size: 12px;
     font-style: normal;
@@ -231,6 +292,18 @@ const ContentToBeShown ={
 
 function ReportsPage() {
   const [page, setpage] = useState(1);
+  const [reportData, setReportData] = useState<any>([]);
+  const [entries, setEntries] = useState({start:1, end:15})
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+  const [loader, setLoader] = useState(false);
+  const [pagi, setPagi] = useState([]);
+  const [totalData, setTotalData] = useState({
+                                                "categorized_audios": 0,
+                                                "total_audios": 0,
+                                                "transcripted_audios": 0,
+                                                "unprocessed_audios": 0
+                                            });
 
   const HandlePageIncrease = ()=>{
     if(page < ContentToBeShown.ths.length){
@@ -248,96 +321,235 @@ function ReportsPage() {
     setpage(pageNo)
   }
 
+  const GettingAlltheData = (promisedata:any)=> Promise.all(promisedata)
+    .then((responses)=>{
+        const data1 = responses[0];
+        if(data1){
+          setTotalData({...data1})
+          console.log("genaral data =>", data1);
+          setLoader(false);
+        }
+    })
+    .catch(()=>{
+      
+  })
+
+  const GettingReportsData = (promisedata:any)=> Promise.all(promisedata)
+    .then((responses)=>{
+        const data1 = responses[0];
+        if(data1){
+          setReportData(data1)
+          console.log("data1 =>", data1);
+          setLoader(false)
+        }
+    })
+    .catch((error)=>{
+      console.log(error);
+  })
+
+  useEffect(()=>{
+    GettingAlltheData([GetData(`${APIS.GeneralDataApi}`)])
+  }, [])
+
   useEffect(()=>{
     document.getElementById(`id-${page}`)?.scrollIntoView()
+    let newEntry = {start:(15*page) - 14, end:15*page}
+    setEntries(newEntry)
   }, [page])
+
+
+  useEffect(() => {
+    const performHeavyCalculation = async () => {
+      // Your heavy calculation logic here
+      // For example, simulating a delay with setTimeout
+      const heavyResult = await new Promise((resolve) => {
+        setTimeout(() => {
+          const elemnt = Array.from({length: (totalData.categorized_audios/15)}, (_, idx)=>(
+            <PaginationNumbers onClick={()=>HandleSetPageNo(idx + 1)} key={`page-${idx}`} id={`id-${idx + 1}`} $active={idx + 1} $myState={page}>{idx + 1}</PaginationNumbers>
+          ))
+          resolve(elemnt); // Replace this with your actual heavy computation
+        }, 1000);
+      });
+      // @ts-ignore
+      setPagi(heavyResult);
+    };
+    // Call your heavy calculation function here
+    performHeavyCalculation();
+  }, [page]);
+
+
+
+  useEffect(()=>{
+    setLoader(true)
+    // console.log("date changed");
+    const TodaysDate = new Date();
+    let tdsDate = `${TodaysDate.getFullYear()}-${TodaysDate.getMonth()}-${TodaysDate.getDate()}`
+    // console.log("tdsdate=> ",new Date(tdsDate).getTime());
+    let strDate = `${startDate.getFullYear()}-${startDate.getMonth()}-${startDate.getDate()}`
+    // console.log("strtdate=> ",(strDate));
+    let edDate = `${endDate.getFullYear()}-${endDate.getMonth()}-${endDate.getDate()}`
+
+
+    if((new Date(tdsDate).getTime() > new Date(strDate).getTime()) && (strDate!= null && endDate != null)){
+      GettingReportsData([GetData(`${APIS.CategorizedTranscription}?page=${page}&start_date=${strDate}&end_date=${edDate}`)]);
+    }else{
+      GettingReportsData([GetData(`${APIS.CategorizedTranscription}?page=${page}`)]);
+    }
+
+  }, [page, startDate, endDate]);
 
 
   return (
     <ReportPageContainer>
       <PaddedDiv>
-        <ReportPageHeading>Reports</ReportPageHeading>
+        <TopBottomPadding>
+          <ReportPageHeading>Reports</ReportPageHeading>
 
-        <TableAndDataContainer>
-            <div>
-              Recording
-              <button>
-                Download
-              </button>
-            </div>
+            {/* ======================= Date inputs ================= */}
+            <InputDateContainer>
+                <div>
+                  <label htmlFor="fromdate" >
+                    <p>FROM</p>
+                    {/* <Image width={18} height={18}  src='/calendaricon.svg' alt='calendar'/> */}
+                  </label>
+                  {/* <input type="date" name="" id="fromdate" /> */}
+                  <DatePicker
+                    id="fromdate"
+                    selected={startDate}
+                    onChange={(date:any) => setStartDate(date)}
+                  />
+                </div>
 
-            <div>
-              <SearchInput type="text" placeholder='Search...'/>
+                <div>
+                  <label htmlFor="todate">
+                    <p>TO</p>
+                    {/* <Image width={18} height={18}  src='/calendaricon.svg' alt='calendar'/> */}
+                  </label>
+                  {/* <input type="date" name="" id="todate" /> */}
+                  <DatePicker
+                    id="todate"
+                    selected={endDate}
+                    onChange={(date:any) => setEndDate(date)}
+                  />
+                </div>
+            </InputDateContainer>
 
-              <TableContainer>
-                <table>
-                  <tr>
+            <TableAndDataContainer>
+                <div>
+                  Recording
+                  <button>
+                    Download
+                  </button>
+                </div>
+
+                <div>
+                  <SearchInput type="text" placeholder='Search...'/>
+
+                  <TableContainer>
                     {
-                      ContentToBeShown.ths.map((ths, idx)=>{
-                        return(
-                          <th key={`th-${idx}`}>{ths}</th>
-                        )
-                      })
-                    }
-                  </tr>
+                      loader ?
+                        <LoaderContainer>
+                          <ThreeCircles
+                            visible={true}
+                            height="95"
+                            width="95"
+                            color="#4fa94d"
+                            ariaLabel="three-circles-loading"
+                            wrapperStyle={{}}
+                            wrapperClass=""
+                          />
+                        </LoaderContainer>
+                        :
+                        <table>
+                          <tr>
+                          {
+                            reportData.length > 0 &&
+                            Object.keys(reportData[0]).map((data, idx)=>{
+                              return(
+                                <th key={`th-heading-${idx}`}>
+                                  {
+                                    data.replace(/_/g, ' ').toLocaleUpperCase()
+                                  }
+                                </th>
+                              )
+                            })
+                          }
+                            {/* {
+                              ContentToBeShown.ths.map((ths, idx)=>{
+                                return(
+                                  <th key={`th-${idx}`}>{ths}</th>
+                                )
+                              })
+                            } */}
+                          </tr>
 
-                  <>
-                  {
-                    
-                    ContentToBeShown.ths.slice(0, 15).map((trs, idx)=>{
-                      // console.log(idx);
-                      
-                      return(
-                        <tr key={`tr-${idx}`}>
-                          <td>{ContentToBeShown.trs[0].tr.date}</td>
-                          <td>{ContentToBeShown.trs[0].tr.SKUName}</td>
-                          <td>{ContentToBeShown.trs[0].tr.modelName}</td>
-                          <td>{ContentToBeShown.trs[0].tr.problemType}</td>
-                          <td>{ContentToBeShown.trs[0].tr.problemDetail}</td>
-                          <td>{ContentToBeShown.trs[0].tr.agentName}</td>
-                          <td>{ContentToBeShown.trs[0].tr.agentTone}</td>
-                          <td>{ContentToBeShown.trs[0].tr.suggestionToCustomer}</td>
-                          <td>{ContentToBeShown.trs[0].tr.suggestionToAgent}</td>
-                          <td>{ContentToBeShown.trs[0].tr.customerName}</td>
-                          <td>{ContentToBeShown.trs[0].tr.customerLocation}</td>
-                          <td>{ContentToBeShown.trs[0].tr.pinCode}</td>
-                          <td>{ContentToBeShown.trs[0].tr.customerTone}</td>
-                          <td>{ContentToBeShown.trs[0].tr.defectivePart}</td>
-                          <td>{ContentToBeShown.trs[0].tr.suggestionToRnD}</td>
-                          <td>{ContentToBeShown.trs[0].tr.rca}</td>
-                          <td>{ContentToBeShown.trs[0].tr.proposedResolution}</td>
-                          <td>{ContentToBeShown.trs[0].tr.callScore}</td>
-                        </tr>
-                        )
-                      })
-                    }
-                  </>
-                </table>
-
-              </TableContainer>
-
-              <PaginationContainer>
-                <p>Showing 1 to 15 of 57 entries</p>
-
-                <PaginationNoContainer>
-                  <div onClick={HandlePageDecrease}>Prev</div>
-                  <div>
-                    {
-                      ContentToBeShown.ths.map((data, idx)=>{
-                        console.log(idx)
-                        return(
                           <>
-                          <PaginationNumbers onClick={()=>HandleSetPageNo(idx + 1)} key={`page-${idx}`} id={`id-${idx + 1}`} $active={idx + 1} $myState={page}>{idx + 1}</PaginationNumbers>
+                          {
+                            reportData.length > 0 ?
+                            reportData.map((trs:any, idx:any)=>{
+                              // console.log(idx);
+                              
+                              return(
+                                <tr key={`tr-${idx}`}>
+                                  <td>{trs.agent_name ? trs.agent_name: "NA"}</td>
+                                  <td>{trs.agent_tone ? trs.agent_tone:"NA"}</td>
+                                  <td>{trs.call_score ? trs.call_score:"NA"}</td>
+                                  {/* <td>{trs.created_at}</td> */}
+                                  <td>{trs.customer_location ? trs.customer_location:"NA"}</td>
+                                  <td>{trs.customer_name ? trs.customer_name:"NA"}</td>
+                                  <td>{trs.customer_tone ? trs.customer_tone:"NA"}</td>
+                                  <td>{trs.date_of_conversation ? trs.date_of_conversation:"NA"}</td>
+                                  <td>{trs.filename ? trs.filename : "NA"}</td>
+                                  {/* <td>{trs.id}</td> */}
+                                  <td>{trs.identified_defective_part ? trs.identified_defective_part:"NA"}</td>
+                                  <td>{trs.model_name ? trs.model_name:"NA"}</td>
+                                  <td>{trs.pin_code ? trs.pin_code:"NA"}</td>
+                                  <td>{trs.problem_details ? trs.problem_details:"NA"}</td>
+                                  <td>{trs.problem_type ? trs.problem_type : "NA"}</td>
+                                  <td>{trs.proposed_resolution ? trs.proposed_resolution:"NA"}</td>
+                                  <td>{trs.root_cause_analysis ? trs.root_cause_analysis :"NA"}</td>
+                                  <td>{trs.sku_name ? trs.sku_name : "NA"}</td>
+                                  <td>{trs.suggestion_to_agent_by_system ? trs.suggestion_to_agent_by_system : "NA"}</td>
+                                  <td>{trs.suggestions_by_agent ? trs.suggestions_by_agent : "NA"}</td>
+                                  <td>{trs.suggestions_to_rnd_team ? trs.suggestions_to_rnd_team : "NA"}</td>
+                                  {/* <td>{trs.updated_at}</td> */}
+                                </tr>
+                                )
+                              })
+                              :
+                              <LoaderContainer>NO DATA</LoaderContainer>
+                            }
                           </>
-                        )
-                      })
+                        </table>
                     }
-                  </div>
-                  <div onClick={HandlePageIncrease}>Next</div>
-                </PaginationNoContainer>
-              </PaginationContainer>
-            </div>
-          </TableAndDataContainer>
+                  </TableContainer>
+
+                  <PaginationContainer>
+                    {/* @ts-ignore */}
+                    <p>Showing {entries.start} to {entries.end} of {totalData.categorized_audios} entries</p>
+
+                    <PaginationNoContainer>
+                      <div onClick={HandlePageDecrease}>Prev</div>
+                      <div>
+                        {/* {
+                          ContentToBeShown.ths.map((data, idx)=>{
+                            return(
+                              <>
+                              <PaginationNumbers onClick={()=>HandleSetPageNo(idx + 1)} key={`page-${idx}`} id={`id-${idx + 1}`} $active={idx + 1} $myState={page}>{idx + 1}</PaginationNumbers>
+                              </>
+                            )
+                          })
+                        } */}
+                        {
+                          pagi
+                        }
+                      </div>
+                      <div onClick={HandlePageIncrease}>Next</div>
+                    </PaginationNoContainer>
+                  </PaginationContainer>
+                </div>
+            </TableAndDataContainer>
+        </TopBottomPadding>
       </PaddedDiv>
     </ReportPageContainer>
   )

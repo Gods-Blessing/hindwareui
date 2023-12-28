@@ -15,8 +15,20 @@ export const PaddedDiv = styled.div`
     }
 `;
 
+export const TopBottomPadding = styled.div`
+    padding: 30px 0px;
+`
+
 export const PaddingForCharts = styled.div`
     padding: 15px;
+`
+
+export const LoaderContainer = styled.div`
+  /* height: 100px; */
+  padding: 40px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
 export const ChartsHeading = styled.div`
@@ -24,7 +36,7 @@ export const ChartsHeading = styled.div`
     align-items: center;
     justify-content: space-between;
     &>p{
-        font-family: ${FONTS.font1};
+        /* font-family: ${FONTS.font1}; */
         font-size: 16px;
         font-style: normal;
         font-weight: 500;

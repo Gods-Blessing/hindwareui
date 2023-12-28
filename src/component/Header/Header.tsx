@@ -1,13 +1,13 @@
 'use client'
-import React, { useState } from 'react'
 import { PaddedDiv } from '@/commoncomponent/commoncomponents'
+import { MediScreens } from '@/constants/MediaScreen'
 import { COLORS } from '@/constants/colors'
 import { FONTS } from '@/constants/fonts'
 import Image from 'next/image'
 import Link from 'next/link'
+import React, { useState } from 'react'
 // import styled
 import styled from 'styled-components'
-import { MediScreens } from '@/constants/MediaScreen'
 
 const HeaderContainer = styled.nav`
     position: fixed;
@@ -15,7 +15,7 @@ const HeaderContainer = styled.nav`
     /* width: 1366px; */
     right: 0px;
     left: 0px;
-
+    z-index: 9;
 `
 const HeaderLogo = styled(Image)`
     width: 138px;
@@ -100,7 +100,6 @@ const IconsContainer = styled.div`
             margin-right: 10px;
         }
     }
-
     @media screen and (max-width: ${MediScreens.Mobile}) {
         gap: 10px;
         &>div{
@@ -123,6 +122,7 @@ const AvatarImageContainer = styled.div`
     }
 `
 
+
 function Header() {
     const [showInput, setShowInput] = useState(false);
 
@@ -134,7 +134,7 @@ function Header() {
     <HeaderContainer>
         <HeadrContainer2>
                 <PaddedDiv>
-                    <div> 
+                    <div>
                         <Link href='/'>
                             <HeaderLogo width={138} height={30} src='/Logo_1.svg' alt='logo'/>
                         </Link>

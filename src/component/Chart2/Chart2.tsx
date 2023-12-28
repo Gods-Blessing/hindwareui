@@ -1,11 +1,9 @@
-'use client'
 import React, { useEffect, useState } from 'react'
+
 import dynamic from 'next/dynamic';
 import styled from 'styled-components';
 import { COLORS } from '@/constants/colors';
 import { ChartsHeading, PaddedDiv, PaddingForCharts } from '@/commoncomponent/commoncomponents';
-
-// import ReactApexChart from 'react-apexcharts';
 const ReactApexChart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 
@@ -14,13 +12,13 @@ const PieChartContainer = styled.div`
     height: 100%;
     width: 100%;
     border-radius: 10px;
-    border: 1px solid ${COLORS.Grayish_2};
-    background: ${COLORS.white};
+    border: 1px solid var(--TD-Border, #EDEBEB);
+    background: var(--white, #FFF);
     /* card-shadow */
     box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.05);
 
     &>div:not(:last-child){
-        border-bottom: 1px solid ${COLORS.Grayish_2};
+        border-bottom: 1px solid var(--TD-Border, #EDEBEB);
     }
 `
 
@@ -58,94 +56,108 @@ const ApexPieChartContainer = styled.div`
 
 
 
-function Chart2() {
-    const [temp, setTemp] = useState();
-    const myData = {
-        series: [220, 38],
-            options: {
-              chart: {
-                width: 200,
-                height:200,
-                type: 'pie',
-              },
-              labels: ['Soft', 'Hard'],
-              colors:['#49A3A1', '#DC3545'],
-              plotOptions: {
-                pie: {
-                  dataLabels: {
-                    offset: -10,
-                  }, 
-                }
-              },
-              tooltip: {
-                fixed: {
-                  enabled: true,
-                  position: 'topRight',
-                  offsetX: 0,
-                  offsetY: 0,
-                },
-              },
-              legend: {
-                position: 'bottom',
-                // fontSize: '10px',
-                // fontWeight: 600,
-              },
-              responsive: [{
-                breakpoint: 480,
-                options: {
-                  chart: {
-                    width: 300
-                  },
-                  legend: {
-                    position: 'bottom'
-                  }
-                }
-              },
-              {
-                breakpoint: 1500,
-                options: {
-                  chart: {
-                    width: 300
-                  },
-                  legend: {
-                    position: 'bottom'
-                  }
-                }
-              }
-            ]
+const myData = {
+  series: [264665, 52642, 212023],
+      options: {
+        chart: {
+          width: 200,
+          height:200,
+          type: 'pie',
+        },
+        labels: ['Total Audios', 'Transcribed Audios', 'Unprocessed Audios'],
+        colors:['#49A3A1', '#DC3545', '#dcce35'],
+        plotOptions: {
+          pie: {
+            dataLabels: {
+              offset: -10,
+            }, 
+          }
+        },
+        legend: {
+          position: 'bottom',
+          // fontSize: '10px',
+          // fontWeight: 600,
+        },
+        responsive: [{
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 300
             },
-        }
+            legend: {
+              position: 'bottom'
+            }
+          }
+        },
+        // {
+        //   breakpoint: 1500,
+        //   options: {
+        //     chart: {
+        //       width: 300
+        //     },
+        //     legend: {
+        //       position: 'bottom'
+        //     }
+        //   }
+        // }
+      ]
+      },
+  }
 
-    return (
+
+function Chart2({chartData}:any){
+  console.log(chartData);
+  
+  const [temp, setTemp] = useState(myData);
+  const [options, setOptions] = useState([0, 0, 0]);
+  const [series, setSeries] = useState(["-", "-", "-"])
+
+  console.log("temp => ", temp)
+  
+  
+  useEffect(()=>{
+    // console.log(temp);
+    // let chartinfo = {...temp}
+    // console.log("chartInfo ==>", chartinfo);
+    
+    // // chartinfo.series.push(chartData[data]
+    // chartinfo.series = [chartData['total_audios'],chartData['transcripted_audios'], chartData['unprocessed_audios']]
+    // chartinfo.options.labels = ["boom", "hames", "games"]
+    // // Object.keys(chartData).map((data)=> console.log(chartData[data]))
+    // // Object.keys(chartData).map((data)=> chartinfo.options.labels.push(chartData[data]))
+    // setTemp(chartinfo)
+  }, [])
+
+
+  return (
     <PieChartContainer>
         <div>
             <PaddingForCharts>
                 <ChartsHeading>
-                    <p>Tone Quality</p>
+                    <p>Audios</p>
                 </ChartsHeading>
             </PaddingForCharts>
         </div>
         <div>
             <PaddingForCharts>
                 <ApexPieChartContainer>
-                    {/* <div id="chart"> */}
+                  {/* <div id="chart"> */}
                     {
                       (typeof window !== 'undefined') &&
                       <>
                         {/* @ts-ignore */}
-                        <ReactApexChart options={myData.options} series={myData.series} type="pie" width={300} />
+                        <ReactApexChart options={temp.options} series={temp.series} type="pie" width={"100%"} />
                       </>
                     }
-                    {/* </div> */}
+                  {/* </div> */}
                 </ApexPieChartContainer>
 
                 <TotalCallsContainer>
-                    <TotalCallsCount>258</TotalCallsCount>
-                    <TotalCallCountText>Total Calls</TotalCallCountText>
+                    <TotalCallsCount>{chartData.transcripted_audios}</TotalCallsCount>
+                    <TotalCallCountText>Transcribed Audios</TotalCallCountText>
                 </TotalCallsContainer>
             </PaddingForCharts>
         </div>
-
     </PieChartContainer>
   )
 }
