@@ -356,7 +356,6 @@ function HomePage() {
   const [loader, setLoader] = useState(false);
   const [pagi, setPagi] = useState([]);
 
-
   const HandlePopOverData = (data:any)=>{
     document.body.style.overflow = 'hidden';
     setPopOverData(data);
@@ -426,7 +425,7 @@ function HomePage() {
         const data1 = responses[0];
         if(data1){
           setTranscriptData(data1)
-          console.log("data1 =>", data1);
+          // console.log("data1 =>", data1);
           setLoader(false);
         }
     })
@@ -436,30 +435,30 @@ function HomePage() {
 
   useEffect(()=>{
     setLoader(true);
-    GettingAlltheLivePrice([GetData(APIS.GeneralDataApi), GetData(APIS.AudioTranscriptions)]);
+    GettingAlltheLivePrice([GetData(process.env.NEXT_PUBLIC_GENERALAPI), GetData(process.env.NEXT_PUBLIC_AUDIO_TRANSACTIONS)]);
   }, []);
 
   useEffect(()=>{
     setLoader(true);
-    GettingTransciptionData([GetData(`${APIS.AudioTranscriptions}?page=${page}`)]);
+    GettingTransciptionData([GetData(`${process.env.NEXT_PUBLIC_AUDIO_TRANSACTIONS}?page=${page}`)]);
   }, [page]);
   
   useEffect(() => {
     const performHeavyCalculation = async () => {
-      // Your heavy calculation logic here
-      // For example, simulating a delay with setTimeout
+      // pages calculation logic here
+      // delay with setTimeout
       const heavyResult = await new Promise((resolve) => {
         setTimeout(() => {
           const elemnt = Array.from({length: (cardsData[1].count/15)}, (_, idx)=>(
             <PaginationNumbers onClick={()=>HandleSetPageNo(idx + 1)} key={`page-${idx}`} id={`id-${idx + 1}`} $active={idx + 1} $myState={page}>{idx + 1}</PaginationNumbers>
           ))
-          resolve(elemnt); // Replace this with your actual heavy computation
+          resolve(elemnt); // returning actual heavy computation
         }, 1000);
       });
       // @ts-ignore
       setPagi(heavyResult);
     };
-    // Call your heavy calculation function here
+    // Call calculation function here
     performHeavyCalculation();
   }, [page]);
 
@@ -478,9 +477,9 @@ function HomePage() {
 
 
     if((new Date(tdsDate).getTime() > new Date(strDate).getTime()) && (strDate!= null && endDate != null)){
-      GettingTransciptionData([GetData(`${APIS.AudioTranscriptions}?start_date=${strDatep}&end_date=${edDatep}`)]);
+      GettingTransciptionData([GetData(`${process.env.NEXT_PUBLIC_AUDIO_TRANSACTIONS}?start_date=${strDatep}&end_date=${edDatep}`)]);
     }else{
-      GettingTransciptionData([GetData(`${APIS.AudioTranscriptions}?page=${page}`)]);
+      GettingTransciptionData([GetData(`${process.env.NEXT_PUBLIC_AUDIO_TRANSACTIONS}?page=${page}`)]);
     }
 
   }, [page, startDate, endDate]);
@@ -536,6 +535,7 @@ function HomePage() {
                       id="fromdate"
                       selected={startDate}
                       onChange={(date:any) => setStartDate(date)}
+                      maxDate={new Date()}
                     />
                   </div>
 
@@ -549,6 +549,7 @@ function HomePage() {
                       id="todate"
                       selected={endDate}
                       onChange={(date:any) => setEndDate(date)}
+                      maxDate={new Date()}
                     />
                   </div>
                 </InputDateContainer>

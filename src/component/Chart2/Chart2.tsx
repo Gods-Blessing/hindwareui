@@ -116,17 +116,19 @@ function Chart2({chartData}:any){
   
   
   useEffect(()=>{
-    // console.log(temp);
-    // let chartinfo = {...temp}
-    // console.log("chartInfo ==>", chartinfo);
+    let Numseries:any = [];
+    let newlabels:any = []
+    Numseries = [chartData.total_audios,chartData.transcripted_audios, chartData.unprocessed_audios]
+    if( chartData.categorized_audios ){
+      let updatedtemp = temp;
+      updatedtemp = { ...temp , series : Numseries, options:{...temp.options}};
+    }
     
-    // // chartinfo.series.push(chartData[data]
-    // chartinfo.series = [chartData['total_audios'],chartData['transcripted_audios'], chartData['unprocessed_audios']]
-    // chartinfo.options.labels = ["boom", "hames", "games"]
-    // // Object.keys(chartData).map((data)=> console.log(chartData[data]))
-    // // Object.keys(chartData).map((data)=> chartinfo.options.labels.push(chartData[data]))
-    // setTemp(chartinfo)
-  }, [])
+    let chartinfo = {...temp}
+    setTemp((prevstate)=>{
+      return {...prevstate, series:Numseries, options:{...prevstate.options}}
+    })
+  }, [chartData])
 
 
   return (
