@@ -10,8 +10,8 @@ const SigninModalContainer = styled.div`
     bottom: 0px;
     left: 0px;
     right: 0px;
-    background-color: rgb(0, 0, 0, 0);
-    z-index: 3;
+    background-color: rgb(0, 0, 0, 1);
+    z-index: 11;
     display: flex;
     align-items: center;
     justify-content: center;
