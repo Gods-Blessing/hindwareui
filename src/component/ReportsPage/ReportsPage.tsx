@@ -8,7 +8,7 @@ import { MediScreens } from "@/constants/MediaScreen";
 import { COLORS } from "@/constants/colors";
 import { FONTS } from "@/constants/fonts";
 import { GetData } from "@/network";
-import { APIS } from "@/network/AllApis";
+// import { APIS } from "@/network/AllApis";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
