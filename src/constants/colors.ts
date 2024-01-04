@@ -11,6 +11,7 @@ const color3 = '#393945'
 
 const Grayish_1 = '#888A8E'
 const Grayish_2 = '#EDEBEB'
+const Grayish_2_rgb = 'rgba(237, 235, 235, 0.6)'
 
 const CardColor1 = '#A1D119'
 const CardColor1_rgba = 'rgba(161, 209, 25, 0.3)'
@@ -43,6 +44,7 @@ export const COLORS = {
 
     Grayish_1,
     Grayish_2,
+    Grayish_2_rgb,
 
     CardColor1,
     CardColor1_rgba,

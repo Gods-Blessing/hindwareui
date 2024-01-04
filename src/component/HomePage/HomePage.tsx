@@ -200,6 +200,12 @@ const TableContainer = styled.div`
     width: 100%;
     border-collapse: collapse;
 
+    &>tr:not(:first-child){
+      &:hover{
+        background-color: ${COLORS.Grayish_2_rgb};
+      }
+    }
+
     &>tr{
       border-top: 1px solid ${COLORS.Grayish_2};
 
