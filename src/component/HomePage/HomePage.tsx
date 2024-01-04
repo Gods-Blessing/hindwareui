@@ -585,11 +585,16 @@ function HomePage() {
                             transcriptData.length > 0 &&
                             Object.keys(transcriptData[0]).map((data, idx)=>{
                               return(
-                                <th key={`th-heading-${idx}`}>
-                                  {
-                                    data.replace(/_/g, ' ').toLocaleUpperCase()
-                                  }
-                                </th>
+                                <>
+                                {
+                                  data != 'timestamp_included' &&
+                                  <th key={`th-heading-${idx}`}>
+                                    {
+                                      data.replace(/_/g, ' ').toLocaleUpperCase()
+                                    }
+                                  </th>
+                                }
+                                </>
                               )
                             })
                           }
